@@ -5,6 +5,28 @@
 
 const http = require('http');
 // We now use the createServer method (a property of the http object we created )to create the server.
+
+// ----------------------------------------------------------------
+// an example of error handling
+// suppose we face errors while DB connection and we need to exit the current process
+// now for simplicity's sake we are using a boolean variable
+const dbConnection = false;
+if(!dbConnection){
+    // process is a global object which we can use to end the current process
+    // whatever number we pass to the exit function OTHER THAN 0, 
+    // inidcates that the process ended due to some error and so we cannot restart the app from cmd
+    process.exit(1);
+    // instead of 1 if we pass 0 then after the process ends, we can restart it from our cmd as
+    // as 0 indicates that the process exited successfully with no errors
+}
+
+// dbConnection = true;
+// if(!dbConnection){
+//     process.exit(1);
+// }
+
+// ----------------------------------------------------------------
+
 const server = http.createServer(
     // for response, we need to pass a callback funtion as an argument to createServer()
     // this callback function expects two arguments - the client request and the "immature" response 
