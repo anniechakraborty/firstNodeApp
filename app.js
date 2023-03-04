@@ -17,16 +17,44 @@ const server = http.createServer(
 
 
         // we can also send HTML code
-        responses.end(
-            `<html>
-                <head>
-                    <title>First node app</title>
-                </head>
-                <body>
-                    <h1>Hello world</h1>
-                </body>
-            </html>`
-        );
+        // responses.end(
+        //     `<html>
+        //         <head>
+        //             <title>First node app</title>
+        //         </head>
+        //         <body>
+        //             <h1>Hello world</h1>
+        //         </body>
+        //     </html>`
+        // );
+
+        // using switch cases :
+        switch(requests.url){
+            case '/' : 
+            case 'http://localhost:5050':
+            case '/home' :
+            responses.end(
+                `<html>
+                    <head>
+                        <title>First node app</title>
+                    </head>
+                    <body>
+                        <h1>Hello world</h1>
+                        <p> This is the home page </p>
+                    </body>
+                </html>`
+            );
+            break;
+            case '/admin':
+                responses.end('welcome to the admin page');
+                break;
+            case '/user':
+                responses.end('welcome to the user page');
+                break;
+            default :
+                responses.end('page does not exist');
+                break;
+        }
     }
 );
 // server is the new object we have created which is an instance of the Server class
